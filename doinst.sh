@@ -12,8 +12,8 @@ if [ -e /usr/share/icons/hicolor/icon-theme.cache ]; then
   fi
 fi
 
-if [ -f /etc/v2ray/vpoint_vmess_freedom.json ]; then
-	ln -s /etc/v2ray/vpoint_vmess_freedom.json /etc/v2ray/config.json
-elif [ -f /etc/v2ray/vpoint_socks_vmess.json ]; then
-	ln -s /etc/v2ray/vpoint_socks_vmess.json /etc/v2ray/config.json
-fi
+#if [ -f /etc/v2ray/vpoint_vmess_freedom.json ]; then
+#	ln -s /etc/v2ray/vpoint_vmess_freedom.json /etc/v2ray/config.json
+#elif [ -f /etc/v2ray/vpoint_socks_vmess.json ]; then
+#	ln -s /etc/v2ray/vpoint_socks_vmess.json /etc/v2ray/config.json
+#fi
