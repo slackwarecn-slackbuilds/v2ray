@@ -1,0 +1,48 @@
+#!/bin/sh
+
+# Slackware build script for v2ray.
+
+# Copyright 2020 MDrights <psychi2009@gmail.com> 
+# All rights reserved.
+#
+
+PRGNAM=v2ray
+VERSION=${VERSION:-4.34.0}
+BUILD=${BUILD:-1}
+TAG=${TAG:-_MD}
+
+if [ -z "$ARCH" ]; then
+  case "$( uname -m )" in
+    i?86) ARCH="linux-32" ;;
+    arm*) ARCH=arm ;;
+	x86_64) ARCH="linux-64" ;;
+       *) ARCH=$( uname -m ) ;;
+  esac
+fi
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/SBo}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+DOCFILES=""
+
+set -e
+
+rm -rf $PKG
+mkdir -p $TMP $PKG $OUTPUT
+cd $TMP
+rm -rf $PRGNAM-$VERSION
+#tar xvf $CWD/v$VERSION.tar.gz
+unzip $CWD/$PRGNAM-$ARCH.zip -d $TMP/$PRGNAM-$ARCH
+
+# Copy the unpacked things to Temp dir.
+mkdir -p $PKG/usr/local/bin $PKG/etc/v2ray
+cp -a $PRGNAM-$ARCH/{v2ctl,v2ray} $PKG/usr/local/bin/
+cp -a $PRGNAM-$ARCH/{config.json,vpoint_socks_vmess.json,vpoint_vmess_freedom.json} $PKG/etc/v2ray/
+
+
+ARCH="x86_64"
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz}
